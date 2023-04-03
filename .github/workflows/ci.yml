@@ -70,28 +70,6 @@ jobs:
           sudo sysctl -w fs.file-max=262144
           sudo sysctl -w vm.max_map_count=262144
 
-      - name: Runs Elasticsearch
-        uses: elastic/elastic-github-actions/elasticsearch@master
-        with:
-          stack-version: 8.2.0
-          security-enabled: false
-
-      - name: Setup postgresql
-        uses: Softwarepark/postgresql-action@v2
-        with:
-          postgresql version: "13" # See https://hub.docker.com/_/postgres for available versions
-          postgresql password: webda.io
-          postgresql user: webda.io
-          postgresql db: webda.io
-          postgresql init scripts: packages/postgres/test/sql
-
-      - id: auth
-        uses: google-github-actions/auth@v0.4.0
-        with:
-          create_credentials_file: true
-          workload_identity_provider: ${{ secrets.GCP_OIDC_ID_PROVIDER }}
-          service_account: ${{ secrets.GCP_OIDC_SA}}
-
       - name: Restore Lerna/NX Cache
         uses: actions/cache@v3
         with:
@@ -100,6 +78,12 @@ jobs:
 
       - name: Install dependencies
         run: yarn --ignore-engines
+
+      - name: Nx Report
+        run: npx nx report
+
+      - name: Print Graph
+        run: NX_DAEMON=false NX_CACHE_PROJECT_GRAPH=false NX_VERBOSE_LOGGING=true npx nx graph --file graph.json && cat graph.json
 
       - name: Build
         run: yarn run build

@@ -13,7 +13,7 @@
 
 [https://webda.io](https://docs.webda.io)
 
-## Summary
+## Summar
 
 Webda is a framework that provides a dependencies injection system, model-driven applications with multidatabase abstraction and deployment strategy that includes Lambda/APIGateway, Kubernetes.
 
