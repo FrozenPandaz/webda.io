@@ -62,11 +62,5 @@
   },
   "homepage": "https://github.com/loopingz/webda.io#readme",
   "repository": "git://github.com/loopingz/webda.io.git",
-  "license": "MIT",
-  "nx": {
-    "implicitDependencies": [
-      "@webda/core",
-      "@webda/shell"
-    ]
-  }
+  "license": "MIT"
 }

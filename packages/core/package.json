@@ -97,12 +97,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "nx": {
-    "implicitDependencies": [
-      "@webda/tsc-esm",
-      "@webda/workout"
-    ]
-  },
   "webda": {
     "namespace": "Webda"
   },
